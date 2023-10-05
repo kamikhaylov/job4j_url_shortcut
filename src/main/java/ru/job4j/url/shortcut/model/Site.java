@@ -38,7 +38,7 @@ public class Site {
     private String url;
 
     /** Название сайта */
-    @NotBlank(message = "Не заполнено название ссайта")
+    @NotBlank(message = "Не заполнено название сайта")
     private String name;
 
     /** Пользователь */
