@@ -9,6 +9,7 @@ import ru.job4j.url.shortcut.dto.request.RegistrationRequestDto;
 import ru.job4j.url.shortcut.dto.response.RegistrationResponseDto;
 import ru.job4j.url.shortcut.mapper.Mapper;
 import ru.job4j.url.shortcut.model.Site;
+import ru.job4j.url.shortcut.model.User;
 import ru.job4j.url.shortcut.repository.api.SiteRepository;
 
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class RegistrationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationService.class.getName());
 
     private final SiteRepository personRepository;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final Mapper<RegistrationRequestDto, Site> registrationRequestMapper;
     private final Mapper<Site, RegistrationResponseDto> registrationResponseMapper;
@@ -38,16 +40,20 @@ public class RegistrationService {
     public Optional<RegistrationResponseDto> create(RegistrationRequestDto requestDto) {
         Site site = registrationRequestMapper.map(requestDto);
 
-        System.out.println(site);
-
         site.getUser().setPassword(passwordEncoder.encode(site.getUser().getPassword()));
         Optional<RegistrationResponseDto> result = Optional.empty();
 
-        try {
-            result = Optional.of(registrationResponseMapper.map(personRepository.save(site)));
-        } catch (Exception ex) {
-            LOGGER.error(URL_CUT_0001.toString(), ex);
+        Optional<User> user = userService.create(site.getUser());
+
+        if (user.isPresent()) {
+            site.setUser(user.get());
+            try {
+                result = Optional.of(registrationResponseMapper.map(personRepository.save(site)));
+            } catch (Exception ex) {
+                LOGGER.error(URL_CUT_0001.toString(), ex);
+            }
         }
+
         return result;
     }
 }

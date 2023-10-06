@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import ru.job4j.url.shortcut.dto.response.RegistrationResponseDto;
 import ru.job4j.url.shortcut.model.Site;
 
+/**
+ * Маппер модели Site в ответ на регистрацию RegistrationResponseDto
+ */
 @Component
 public class RegistrationResponseMapper implements Mapper<Site, RegistrationResponseDto> {
 

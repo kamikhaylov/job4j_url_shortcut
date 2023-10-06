@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 /**
- * Модель сайта
+ * Модель линка
  */
 @Data
 @AllArgsConstructor
@@ -24,22 +24,27 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
-@Table(name = "sites")
-public class Site {
+@Table(name = "links")
+public class Link {
 
-    /** Идентификатор сайта */
+    /** Идентификатор линка */
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /** Сайт */
-    @NotBlank(message = "Не заполнен site")
-    private String site;
+    /** URL адреса */
+    @NotBlank(message = "Не заполнен URL")
+    private String url;
 
-    /** Название сайта */
-    @NotBlank(message = "Не заполнено название сайта")
-    private String name;
+    /** Код */
+    @NotBlank(message = "Не заполнен код")
+    private String code;
+
+    /** Статистика */
+    @OneToOne
+    @JoinColumn(name = "statistic_id")
+    private Statistic statistic;
 
     /** Пользователь */
     @OneToOne

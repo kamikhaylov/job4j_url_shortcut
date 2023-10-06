@@ -1,7 +1,7 @@
 create table if not exists users (
     id          serial           not null    primary key,
-    login       varchar(36)      not null    unique,
-    password    varchar(36)      not null
+    login       varchar          not null    unique,
+    password    varchar          not null
 );
 
 comment on table users is 'Пользователи';

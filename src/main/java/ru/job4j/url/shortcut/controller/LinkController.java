@@ -7,27 +7,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.job4j.url.shortcut.dto.request.RegistrationRequestDto;
-import ru.job4j.url.shortcut.dto.response.RegistrationResponseDto;
-import ru.job4j.url.shortcut.service.RegistrationService;
+import ru.job4j.url.shortcut.dto.request.LinkRequestDto;
+import ru.job4j.url.shortcut.dto.response.LinkResponseDto;
+import ru.job4j.url.shortcut.service.LinkService;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
 /**
- * Контроллер регистрации
+ * Контроллер регистрации url
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/registration")
-public class RegistrationController {
+@RequestMapping("/link")
+public class LinkController {
 
-    private final RegistrationService registrationService;
+    private final LinkService linkService;
 
-    @PostMapping("/sign-up")
-    public ResponseEntity<RegistrationResponseDto> registration(
-            @Valid @RequestBody RegistrationRequestDto request) {
-        Optional<RegistrationResponseDto> result = registrationService.create(request);
+    @PostMapping("/convert")
+    public ResponseEntity<LinkResponseDto> convert(@Valid @RequestBody LinkRequestDto request) {
+        Optional<LinkResponseDto> result = linkService.create(request);
 
         return result.map(response -> new ResponseEntity<>(response, HttpStatus.CREATED))
                        .orElseGet(() -> new ResponseEntity<>(HttpStatus.CONFLICT));

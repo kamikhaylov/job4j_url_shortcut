@@ -8,16 +8,15 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 
 /**
- * ДТО ответа регистрации
+ * ДТО ответаа регистрации URL
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RegistrationResponseDto {
+public class LinkResponseDto {
 
-    /** Сайт */
-    @NotBlank(message = "Не заполнен сайт")
-    private String site;
-
+    /** Код URL-адрес */
+    @NotBlank(message = "Не заполнен код URL-адрес")
+    private String code;
 }

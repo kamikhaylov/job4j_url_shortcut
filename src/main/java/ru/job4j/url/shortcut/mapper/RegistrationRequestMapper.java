@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import ru.job4j.url.shortcut.dto.request.RegistrationRequestDto;
 import ru.job4j.url.shortcut.model.Site;
 
+/**
+ * Маппер запроса регистрации RegistrationRequestDto в модель Site
+ */
 @Component
 public class RegistrationRequestMapper implements Mapper<RegistrationRequestDto, Site> {
 
@@ -16,12 +19,16 @@ public class RegistrationRequestMapper implements Mapper<RegistrationRequestDto,
         this.mapper.getConfiguration().setSkipNullEnabled(true);
         TypeMap<RegistrationRequestDto, Site> propertyMapper =
                 this.mapper.createTypeMap(RegistrationRequestDto.class, Site.class);
+        propertyMapper.addMapping(
+                RegistrationRequestDto::getLogin,
+                (site, login) -> site.getUser().setLogin((String) login));
+        propertyMapper.addMapping(
+                RegistrationRequestDto::getPassword,
+                (site, password) -> site.getUser().setPassword((String) password));
         propertyMapper.addMappings(
-                mapper -> mapper.map(RegistrationRequestDto::getLogin, Site::setUser)
-        );
+                mapper -> mapper.map(RegistrationRequestDto::getSite, Site::setSite));
         propertyMapper.addMappings(
-                mapper -> mapper.map(RegistrationRequestDto::getPassword, Site::setUser)
-        );
+                mapper -> mapper.map(RegistrationRequestDto::getName, Site::setName));
     }
 
     @Override

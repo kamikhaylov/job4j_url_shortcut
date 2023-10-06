@@ -24,9 +24,9 @@ public class RegistrationRequestDto {
     @NotBlank(message = "Не заполнен пароль")
     private String password;
 
-    /** URL адреса */
-    @NotBlank(message = "Не заполнен URL")
-    private String url;
+    /** Сайт */
+    @NotBlank(message = "Не заполнен сайт")
+    private String site;
 
     /** Название сайта */
     @NotBlank(message = "Не заполнено название сайта")

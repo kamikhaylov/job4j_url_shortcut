@@ -8,5 +8,6 @@
     <include file="scripts/ddl/001_create_users_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/ddl/002_create_statistics_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/ddl/003_create_sites_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/ddl/004_create_links_table.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
