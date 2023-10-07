@@ -31,6 +31,7 @@ public class StatisticService {
     private final LinkRepository linkRepository;
     private final Mapper<Link, StatisticListResponseDto> statisticListResponseMapper;
 
+    @Transactional
     public Optional<Statistic> create(Statistic statistic) {
         Optional<Statistic> result = Optional.empty();
         try {

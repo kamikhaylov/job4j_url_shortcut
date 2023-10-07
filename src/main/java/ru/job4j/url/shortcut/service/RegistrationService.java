@@ -12,6 +12,7 @@ import ru.job4j.url.shortcut.model.Site;
 import ru.job4j.url.shortcut.model.User;
 import ru.job4j.url.shortcut.repository.api.SiteRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static ru.job4j.url.shortcut.logging.UrlShortcutLogEvent.URL_CUT_0001;
@@ -37,9 +38,9 @@ public class RegistrationService {
      * @param requestDto ДТО запроса регистрации
      * @return ДТО ответа регистрации
      */
+    @Transactional
     public Optional<RegistrationResponseDto> create(RegistrationRequestDto requestDto) {
         Site site = registrationRequestMapper.map(requestDto);
-
         site.getUser().setPassword(passwordEncoder.encode(site.getUser().getPassword()));
         Optional<RegistrationResponseDto> result = Optional.empty();
 

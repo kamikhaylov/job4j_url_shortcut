@@ -12,10 +12,11 @@ import ru.job4j.url.shortcut.model.Statistic;
 import ru.job4j.url.shortcut.model.User;
 import ru.job4j.url.shortcut.repository.api.LinkRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
-import static ru.job4j.url.shortcut.logging.UrlShortcutLogEvent.URL_CUT_0002;
+import static ru.job4j.url.shortcut.logging.UrlShortcutLogEvent.URL_CUT_0005;
 
 /**
  * Сервис регистрации
@@ -32,6 +33,7 @@ public class LinkService {
     private final Mapper<LinkRequestDto, Link> linkRequestMapper;
     private final Mapper<Link, LinkResponseDto> linkResponseMapper;
 
+    @Transactional
     public Optional<LinkResponseDto> create(LinkRequestDto request, String login) {
         Optional<LinkResponseDto> result = Optional.empty();
         Link link = linkRequestMapper.map(request);
@@ -47,7 +49,7 @@ public class LinkService {
             try {
                 result =  Optional.of(linkResponseMapper.map(linkRepository.save(link)));
             } catch (Exception ex) {
-                LOGGER.error(URL_CUT_0002.toString(), ex);
+                LOGGER.error(URL_CUT_0005.toString(), ex);
             }
         }
 

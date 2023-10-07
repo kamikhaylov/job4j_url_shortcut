@@ -8,7 +8,8 @@ public enum UrlShortcutLogEvent implements LogEvent {
     URL_CUT_0001("Ошибка регистрации сайта"),
     URL_CUT_0002("Ошибка создания пользователя"),
     URL_CUT_0003("Ошибка создания статистики сайта"),
-    URL_CUT_0004("Пользователь не найден");
+    URL_CUT_0004("Пользователь не найден"),
+    URL_CUT_0005("Ошибка сохранения линка");
 
     private final String title;
 
