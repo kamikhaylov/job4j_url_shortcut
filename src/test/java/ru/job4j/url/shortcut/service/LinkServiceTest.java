@@ -103,4 +103,18 @@ public class LinkServiceTest {
         verify(linkRepository).save(any());
         verifyNoMoreInteractions(linkRepository, statisticService, userService, linkRequestMapper, linkResponseMapper);
     }
+
+    @Test
+    public void whenFindByCodeThenLink() {
+        String code = "code";
+        Link link = new Link();
+        when(linkRepository.findByCode(code)).thenReturn(Optional.of(link));
+
+        Optional<Link> actual = linkService.findByCode(code);
+
+        assertNotNull(actual);
+        assertTrue(actual.isPresent());
+        verify(linkRepository).findByCode(code);
+        verifyNoMoreInteractions(linkRepository, statisticService, userService, linkRequestMapper, linkResponseMapper);
+    }
 }

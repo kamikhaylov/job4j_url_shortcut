@@ -24,7 +24,7 @@ public class RedirectController {
     private RedirectService redirectService;
 
     @GetMapping("/{code}")
-    public ResponseEntity<Void> convert(@PathVariable String code) {
+    public ResponseEntity<Void> redirect(@PathVariable String code) {
         Optional<RedirectDto> redirect = redirectService.findByCode(code);
         return redirect.<ResponseEntity<Void>>map(
                 redirectDto ->
