@@ -9,9 +9,11 @@ import ru.job4j.url.shortcut.dto.response.LinkResponseDto;
 import ru.job4j.url.shortcut.mapper.Mapper;
 import ru.job4j.url.shortcut.model.Link;
 import ru.job4j.url.shortcut.model.Statistic;
+import ru.job4j.url.shortcut.model.User;
 import ru.job4j.url.shortcut.repository.api.LinkRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static ru.job4j.url.shortcut.logging.UrlShortcutLogEvent.URL_CUT_0002;
 
@@ -26,21 +28,33 @@ public class LinkService {
 
     private final LinkRepository linkRepository;
     private final StatisticService statisticService;
+    private final UserService userService;
     private final Mapper<LinkRequestDto, Link> linkRequestMapper;
     private final Mapper<Link, LinkResponseDto> linkResponseMapper;
 
-    public Optional<LinkResponseDto> create(LinkRequestDto request) {
+    public Optional<LinkResponseDto> create(LinkRequestDto request, String login) {
         Optional<LinkResponseDto> result = Optional.empty();
         Link link = linkRequestMapper.map(request);
+        link.setCode(UUID.randomUUID().toString());
+
+        Optional<User> user = userService.findByLogin(login);
         Optional<Statistic> statistic = statisticService.create(new Statistic(0, 0));
 
-        if (statistic.isPresent()) {
+        if (user.isPresent() && statistic.isPresent()) {
+            link.setUser(user.get());
+            link.setStatistic(statistic.get());
+
             try {
                 result =  Optional.of(linkResponseMapper.map(linkRepository.save(link)));
             } catch (Exception ex) {
                 LOGGER.error(URL_CUT_0002.toString(), ex);
             }
         }
+
         return result;
+    }
+
+    public Optional<Link> findByCode(String code) {
+        return linkRepository.findByCode(code);
     }
 }

@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.url.shortcut.model.Link;
 
+import java.util.Optional;
+
 /**
  * Репозиторий для взаимодействия с таблицей links
  */
@@ -12,4 +14,5 @@ import ru.job4j.url.shortcut.model.Link;
 @Repository
 public interface LinkRepository extends CrudRepository<Link, Integer> {
 
+    Optional<Link> findByCode(String code);
 }

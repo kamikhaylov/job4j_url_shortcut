@@ -27,8 +27,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public static final String SECRET = "SecretKeyToGenJWTs";
     public static final long EXPIRATION_TIME = 864_000_000; /* 10 days */
     public static final String TOKEN_PREFIX = "Bearer ";
-    public static final String HEADER_STRING = "Authorization";
+    public static final String HEADER_AUTHORIZATION = "Authorization";
     public static final String SIGN_UP_URL = "/registration/sign-up";
+    public static final String REDIRECT_URL = "/redirect/**";
 
     private final AuthenticationManager auth;
 
@@ -67,6 +68,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                      auth.getPrincipal()).getUsername())
                                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                                .sign(HMAC512(SECRET.getBytes()));
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        res.addHeader(HEADER_AUTHORIZATION, TOKEN_PREFIX + token);
     }
 }

@@ -12,7 +12,6 @@ import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 
-
 /**
  * Сервис авторизации
  */

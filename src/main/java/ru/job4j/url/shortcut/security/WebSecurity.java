@@ -14,6 +14,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.job4j.url.shortcut.service.AuthorizationService;
 
+import static ru.job4j.url.shortcut.security.JwtAuthenticationFilter.REDIRECT_URL;
 import static ru.job4j.url.shortcut.security.JwtAuthenticationFilter.SIGN_UP_URL;
 
 /**
@@ -29,6 +30,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, REDIRECT_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))

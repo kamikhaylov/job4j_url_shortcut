@@ -8,7 +8,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 
 /**
- * ДТО ответаа регистрации URL
+ * ДТО ответа регистрации URL
  */
 @Data
 @AllArgsConstructor

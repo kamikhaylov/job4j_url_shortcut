@@ -1,9 +1,9 @@
-package ru.job4j.url.shortcut.dto.response;
+package ru.job4j.url.shortcut.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
-import ru.job4j.url.shortcut.mapper.Mapper;
+import ru.job4j.url.shortcut.dto.response.LinkResponseDto;
 import ru.job4j.url.shortcut.model.Link;
 
 /**
