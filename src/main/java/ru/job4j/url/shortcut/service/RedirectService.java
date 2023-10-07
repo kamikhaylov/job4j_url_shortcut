@@ -16,11 +16,16 @@ import java.util.Optional;
 public class RedirectService {
 
     private LinkService linkService;
+    private StatisticService statisticService;
     private Mapper<Link, RedirectDto> redirectMapper;
 
     public Optional<RedirectDto> findByCode(String code) {
         Optional<RedirectDto> result = Optional.empty();
         Optional<Link> link = linkService.findByCode(code);
-        return link.map(value -> redirectMapper.map(value)).or(() -> result);
+        if (link.isPresent()) {
+            statisticService.requestCountIncrement(link.get().getStatistic().getId());
+            result = Optional.of(redirectMapper.map(link.get()));
+        }
+        return result;
     }
 }

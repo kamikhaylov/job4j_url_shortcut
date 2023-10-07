@@ -16,6 +16,7 @@ import ru.job4j.url.shortcut.service.AuthorizationService;
 
 import static ru.job4j.url.shortcut.security.JwtAuthenticationFilter.REDIRECT_URL;
 import static ru.job4j.url.shortcut.security.JwtAuthenticationFilter.SIGN_UP_URL;
+import static ru.job4j.url.shortcut.security.JwtAuthenticationFilter.STATISTIC_LIST;
 
 /**
  * Веб-защита
@@ -31,6 +32,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.GET, REDIRECT_URL).permitAll()
+                .antMatchers(HttpMethod.GET, STATISTIC_LIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))

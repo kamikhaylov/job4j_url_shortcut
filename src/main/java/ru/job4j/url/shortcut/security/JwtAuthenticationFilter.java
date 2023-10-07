@@ -30,6 +30,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public static final String HEADER_AUTHORIZATION = "Authorization";
     public static final String SIGN_UP_URL = "/registration/sign-up";
     public static final String REDIRECT_URL = "/redirect/**";
+    public static final String STATISTIC_LIST = "/statistic/list";
 
     private final AuthenticationManager auth;
 
