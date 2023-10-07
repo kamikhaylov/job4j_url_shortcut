@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-class AuthorizationServiceTest {
+public class AuthorizationServiceTest {
 
     @InjectMocks
     private AuthorizationService authorizationService;

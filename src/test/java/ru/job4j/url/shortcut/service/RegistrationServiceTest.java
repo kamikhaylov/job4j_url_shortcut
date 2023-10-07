@@ -25,7 +25,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-class RegistrationServiceTest {
+public class RegistrationServiceTest {
 
     private RegistrationService registrationService;
 

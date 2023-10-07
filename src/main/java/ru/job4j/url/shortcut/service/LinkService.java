@@ -37,7 +37,7 @@ public class LinkService {
     public Optional<LinkResponseDto> create(LinkRequestDto request, String login) {
         Optional<LinkResponseDto> result = Optional.empty();
         Link link = linkRequestMapper.map(request);
-        link.setCode(UUID.randomUUID().toString());
+        link.setCode(UUID.randomUUID().toString().substring(0, 10));
 
         Optional<User> user = userService.findByLogin(login);
         Optional<Statistic> statistic = statisticService.create(new Statistic(0, 0));

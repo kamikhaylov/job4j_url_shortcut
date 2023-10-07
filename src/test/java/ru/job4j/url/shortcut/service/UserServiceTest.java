@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-class UserServiceTest {
+public class UserServiceTest {
 
     @InjectMocks
     private UserService userService;

@@ -150,6 +150,7 @@
                         <exclude>**/configuration/*</exclude>
                         <exclude>**/model/*</exclude>
                         <exclude>**/Application.class</exclude>
+                        <exclude>**/repository/Queries.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-class RedirectServiceTest {
+public class RedirectServiceTest {
 
     private RedirectService redirectService;
 
