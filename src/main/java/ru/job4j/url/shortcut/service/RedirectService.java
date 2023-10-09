@@ -23,7 +23,7 @@ public class RedirectService {
         Optional<RedirectDto> result = Optional.empty();
         Optional<Link> link = linkService.findByCode(code);
         if (link.isPresent()) {
-            statisticService.requestCountIncrement(link.get().getStatistic().getId());
+            statisticService.increment(link.get().getStatistic().getId());
             result = Optional.of(redirectMapper.map(link.get()));
         }
         return result;

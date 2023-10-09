@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.job4j.url.shortcut.model.Statistic;
-import ru.job4j.url.shortcut.repository.Queries;
 
 /**
  * Репозиторий для взаимодействия с таблицей statistics
@@ -17,6 +16,6 @@ import ru.job4j.url.shortcut.repository.Queries;
 public interface StatisticRepository extends CrudRepository<Statistic, Integer> {
 
     @Modifying
-    @Query(Queries.REQUEST_COUNT_INCREMENT)
-    void requestCountIncrement(@Param("id") int id);
+    @Query("update Statistic set requestCount = requestCount + 1 where id = :id")
+    void increment(@Param("id") int id);
 }

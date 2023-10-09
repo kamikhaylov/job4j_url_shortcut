@@ -50,7 +50,7 @@ public class StatisticService {
     }
 
     @Transactional
-    public void requestCountIncrement(int id) {
-        statisticRepository.requestCountIncrement(id);
+    public void increment(int id) {
+        statisticRepository.increment(id);
     }
 }

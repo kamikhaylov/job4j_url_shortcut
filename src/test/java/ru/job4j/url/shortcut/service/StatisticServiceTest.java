@@ -94,9 +94,9 @@ public class StatisticServiceTest {
 
     @Test
     public void whenRequestCountIncrement() {
-        statisticService.requestCountIncrement(1);
+        statisticService.increment(1);
 
-        verify(statisticRepository).requestCountIncrement(1);
+        verify(statisticRepository).increment(1);
         verifyNoMoreInteractions(statisticRepository, linkRepository, statisticListResponseMapper);
     }
 }

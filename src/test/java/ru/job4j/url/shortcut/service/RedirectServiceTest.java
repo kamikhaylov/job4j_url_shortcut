@@ -58,7 +58,7 @@ public class RedirectServiceTest {
         assertTrue(actual.isPresent());
         assertNotNull(actual.get());
         verify(linkService).findByCode(code);
-        verify(statisticService).requestCountIncrement(0);
+        verify(statisticService).increment(0);
         verify(redirectMapper).map(any());
         verifyNoMoreInteractions(linkService, statisticService, redirectMapper);
     }
