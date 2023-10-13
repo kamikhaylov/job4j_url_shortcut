@@ -169,7 +169,8 @@ Redirect на URL-адреса
 ![statistic.png](readme/image/statistic.png)
 
 ### Контакты
-kanmikhaylov@gmail.com
+- kanmikhaylov@gmail.com
+- [telegram](https://t.me/KonstantinM1khaylov) 
 
 [actions-image]: https://github.com/kamikhaylov/job4j_url_shortcut/actions/workflows/maven.yml/badge.svg
 [actions-url]: https://github.com/kamikhaylov/job4j_url_shortcut/actions/workflows/maven.yml
